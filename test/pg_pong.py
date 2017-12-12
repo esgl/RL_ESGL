@@ -108,7 +108,7 @@ while True:
                 g = grad_buffer[k]
                 rmsprop_cache[k] = decay_rate * rmsprop_cache[k] + (1 - decay_rate) * g ** 2
                 model[k] += learning_rate * g / (np.sqrt(rmsprop_cache[k]) + 1e-5)
-                grad_buffer[k] = np.zeros(v)
+                grad_buffer[k] = np.zeros_like(v)
 
         running_reward = reward_sum if running_reward is None else running_reward * 0.99 + reward_sum * 0.01
         print("resetting env, episode reward total was %f. running mean: %f" % (reward_sum, running_reward))
